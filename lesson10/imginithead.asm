@@ -9,4 +9,18 @@ _start:
   jmp _entry
 align 4
 mbt_hdr:
+  dd MBT_HDR_MAGIC
+  dd MBT_HDR_FLAGS
+  dd -(MBT_HDR_MAGIC+MBT_HDR_FLAGS)
+  dd mbt_hdr
+  dd _start
+  dd 0
+  dd 0
+  dd _entry
+ALIGN 8
+mbhdr:
+  DD 0xE85250D6
+  DD 0
+  DD mhdrend - mbhdr
+  DD -(0xE85250D6 + 0 + (mhdrend - mbhdr))
 
